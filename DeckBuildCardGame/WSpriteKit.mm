@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 #include <mutex>
 #include "Model.hpp"
 #include "View.hpp"

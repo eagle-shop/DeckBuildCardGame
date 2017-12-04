@@ -253,9 +253,9 @@ ActionDone Model::action(EVENT_CtoM *event){
         // データを降順にソート
         sort(tmp.resultData.cardIndex.begin(), tmp.resultData.cardIndex.end(), greater<int>());
 
-        for(auto i = 0; i < tmp.resultData.cardIndex.size(); i++){
+        for(auto cardIndex : tmp.resultData.cardIndex){
             // プレイヤーの手札からカードを削除してカード名を取得
-            auto name = _playerCards.removeCard(&HAND, tmp.resultData.cardIndex[i]);
+            auto name = _playerCards.removeCard(&HAND, cardIndex);
             // 廃棄置き場に追加
             _trashCards.addCard(name);
         }

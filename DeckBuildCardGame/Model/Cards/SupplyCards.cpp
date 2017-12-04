@@ -42,11 +42,11 @@ void SupplyCards::createData(vector<SUPPLYCARDS> *supplyCards){
 
 // 指定したカードを購入、残りコインを返す
 COINRELATIVE SupplyCards::buy(const string *name, COINNUM coin){
-    for(auto i = 0; i < _supplyCards.size(); i++){
-        if(*(_supplyCards[i].cardName) == *name){
+    for(auto& supplyCards : _supplyCards){
+        if(*(supplyCards.cardName) == *name){
             CardInfo &cardInfo = CardInfo::getInstance();
-            if((_supplyCards[i].num > 0) && (cardInfo._cardInfo[*name].effectInfo.cost <= coin)){
-                _supplyCards[i].num--;
+            if((supplyCards.num > 0) && (cardInfo._cardInfo[*name].effectInfo.cost <= coin)){
+                supplyCards.num--;
                 // P2P通知
                 EVENT_CtoM tmp = {};
                 P2P_createData(&tmp, EVENT_P2P_RECEIVEDATA, PHASE_UNKNOWN, &SUPPLYAREA, name);
@@ -63,10 +63,10 @@ COINRELATIVE SupplyCards::buy(const string *name, COINNUM coin){
 }
 
 void SupplyCards::buyOtherPlayer(const string *name){
-    for(auto i = 0; i < _supplyCards.size(); i++){
-        if(*(_supplyCards[i].cardName) == *name){
-            if(_supplyCards[i].num > 0){
-                _supplyCards[i].num--;
+    for(auto& supplyCards : _supplyCards){
+        if(*(supplyCards.cardName) == *name){
+            if(supplyCards.num > 0){
+                supplyCards.num--;
             }
             else{
                 // nop

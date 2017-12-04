@@ -14,20 +14,20 @@ PlayerCards::PlayerCards(){
 PlayerCards::~PlayerCards(){
     cout << "delete PlayerCards" << endl;
 
-    for(auto i = 0; i < _handCards.handCards.size(); i++){
-        delete _handCards.handCards[i];
+    for(auto& handCard : _handCards.handCards){
+        delete handCard;
     }
-    for(auto i = 0; i < _discardCards.size(); i++){
-        delete _discardCards[i];
+    for(auto& discardCard : _discardCards){
+        delete discardCard;
     }
-    for(auto i = 0; i < _deckCards.size(); i++){
-        delete _deckCards[i];
+    for(auto& deckCard : _deckCards){
+        delete deckCard;
     }
-    for(auto i = 0; i < _playCards.size(); i++){
-        delete _playCards[i];
+    for(auto&playCard : _playCards){
+        delete playCard;
     }
-    for(auto i = 0; i < _tmpCards.size(); i++){
-        delete _tmpCards[i];
+    for(auto& tmpCard : _tmpCards){
+        delete tmpCard;
     }
 }
 
@@ -49,15 +49,16 @@ void PlayerCards::init(){
 void PlayerCards::createData(PLAYERCARDS *playerCards){
     // 通知データ生成
     playerCards->deckCardNum = _deckCards.size();
-    for(auto i = 0; i < _handCards.handCards.size(); i++){
+
+    for(auto handCard : _handCards.handCards){
         // カード名をコピー
-        playerCards->handCards.handCardsName.push_back(_handCards.handCards[i]->who());
+        playerCards->handCards.handCardsName.push_back(handCard->who());
         // 表示状態をコピー ????
         playerCards->handCards.drawState.push_back(DRAW_NOMAL);
     }
-    for(auto i = 0; i < _playCards.size(); i++){
+    for(auto playCard : _playCards){
         // カード名をコピー
-        playerCards->playCardsName.push_back(_playCards[i]->who());
+        playerCards->playCardsName.push_back(playCard->who());
     }
     // ????
     if(_handCards.drawState.size() > 0){
@@ -99,16 +100,16 @@ void PlayerCards::buy(const string *name){
         _discardCards.push_back(new Gold());
     }
     else if(*name == ESTATE){
-        _discardCards.push_back(new Estate);
+        _discardCards.push_back(new Estate());
     }
     else if(*name == DUCHY){
-        _discardCards.push_back(new Duchy);
+        _discardCards.push_back(new Duchy());
     }
     else if(*name == PROVINCE){
-        _discardCards.push_back(new Province);
+        _discardCards.push_back(new Province());
     }
     else if(*name == CURSE){
-        _discardCards.push_back(new Curse);
+        _discardCards.push_back(new Curse());
     }
     else if(*name == CHAPEL){
         _discardCards.push_back(new Chapel());
@@ -207,8 +208,8 @@ ActionDone PlayerCards::action(MODEL_PLAYERCARD_IO* modelPlayerCard_ioData){
     if(tmp.resultData.data.ope == GOTOHANDCARD){
         // データを降順にソート
         sort(tmp.resultData.data.cardIndex.begin(), tmp.resultData.data.cardIndex.end(), greater<int>());
-        for(auto i = 0; i < tmp.resultData.data.cardIndex.size(); i++){
-            moveCards(&_handCards.handCards, &_tmpCards, tmp.resultData.data.cardIndex[i]);
+        for(auto cardIndex : tmp.resultData.data.cardIndex){
+            moveCards(&_handCards.handCards, &_tmpCards, cardIndex);
         }
     }
     // 一時置き場にあるカードを捨札に移動
@@ -241,16 +242,16 @@ ActionDone PlayerCards::actionForWaitAction(MODEL_PLAYERCARD_IO* modelPlayerCard
             _handCards.drawState.push_back(DRAW_NOMAL);
         }
         // 指定の番号だけ選択状態に変更
-        for(auto i = 0; i < tmp.resultData.data.cardIndex.size(); i++){
-            _handCards.drawState[tmp.resultData.data.cardIndex[i]] = DRAW_SELECT;
+        for(auto cardIndex : tmp.resultData.data.cardIndex){
+            _handCards.drawState[cardIndex] = DRAW_SELECT;
         }
     }
     // 選択した手札を捨札に移動する
     else if(tmp.resultData.data.ope == GOTODISCARD){
         // データを降順にソート
         sort(tmp.resultData.data.cardIndex.begin(), tmp.resultData.data.cardIndex.end(), greater<int>());
-        for(auto i = 0; i < tmp.resultData.data.cardIndex.size(); i++){
-            moveCards(&_discardCards, &_handCards.handCards, tmp.resultData.data.cardIndex[i]);
+        for(auto cardIndex : tmp.resultData.data.cardIndex){
+            moveCards(&_discardCards, &_handCards.handCards, cardIndex);
         }
     }
     // カード移動がある場合
@@ -375,9 +376,9 @@ void PlayerCards::clearPlayCardOtherPlayer(){
 void PlayerCards::createDataOtherPlayerCards(PLAYERCARDS *playerCards){
     // 通知データ生成
     playerCards->deckCardNum = _deckCards.size();
-    for(auto i = 0; i < _handCards.handCards.size(); i++){
+    for(auto handCards : _handCards.handCards){
         // カード名をコピー
-        playerCards->handCards.handCardsName.push_back(_handCards.handCards[i]->who());
+        playerCards->handCards.handCardsName.push_back(handCards->who());
         // 表示状態をコピー ????
         playerCards->handCards.drawState.push_back(DRAW_NOMAL);
     }

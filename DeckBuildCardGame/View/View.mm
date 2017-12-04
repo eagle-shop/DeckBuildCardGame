@@ -433,9 +433,9 @@ void View::drawPlayerCards(PLAYERCARDS *playerCards){
 
 // ノード削除
 void View::delNode(vector<const string*> *name){
-    for(auto i = 0; i < name->size(); i++){
+    for(auto x : *name){
         // nilでも大丈夫
-        SKNode *del = [_scene childNodeWithName:[NSString stringWithFormat:@"//%s", ((*name)[i])->c_str()]];
+        SKNode *del = [_scene childNodeWithName:[NSString stringWithFormat:@"//%s", x->c_str()]];
         [del removeFromParent];
     }
 }

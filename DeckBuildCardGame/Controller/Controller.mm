@@ -52,18 +52,18 @@ void Controller::touchesBegan(NSSet *touches, UIEvent *event){
     const string tmpNodeName = toucheNode.name.UTF8String;
 
     // タッチノードが登録済みのタッチフレームか探す
-    for(auto i = 0; i < _touchFrameInfo.size(); i++){
+    for(auto& touchFrameInfo : _touchFrameInfo){
         // なぞり対象でない場合
-        if((tmpNodeName == _touchFrameInfo[i].touchFrameName) && (_touchFrameInfo[i].moveFlg == TOUCHMOVE_DISABLE)){
+        if((tmpNodeName == touchFrameInfo.touchFrameName) && (touchFrameInfo.moveFlg == TOUCHMOVE_DISABLE)){
             cout << "touchesBegan : " << tmpNodeName << endl;
             // Modelへタッチ通知
-            notify(&(_touchFrameInfo[i].touchFrameName), TAP, &STRNOTHING);
+            notify(&(touchFrameInfo.touchFrameName), TAP, &STRNOTHING);
             return;
         }
         // なぞり対象の場合
-        if((tmpNodeName == _touchFrameInfo[i].touchFrameName) && (_touchFrameInfo[i].moveFlg == TOUCHMOVE_ENABLE)){
+        if((tmpNodeName == touchFrameInfo.touchFrameName) && (touchFrameInfo.moveFlg == TOUCHMOVE_ENABLE)){
             // ドラッグに備えて各種情報を保持
-            _dragInfo.dragNode = &(_touchFrameInfo[i].parentName); // なぞり操作で動かす親ノード名
+            _dragInfo.dragNode = &(touchFrameInfo.parentName);  // なぞり操作で動かす親ノード名
             _dragInfo.oldLocation = toucheLocation;             // タッチ座標
             _dragInfo.oldTimestamp = event.timestamp;           // タッチ時間
             _dragInfo.dragFlg = NODRAGGING;                     // まだドラッグの判断できないのでfalse
@@ -160,11 +160,11 @@ void Controller::touchesEnded(NSSet *touches, UIEvent *event){
         const string tmpNodeName = toucheNode.name.UTF8String;
 
         // タッチノードが登録済みのタッチフレームか探す
-        for(auto i = 0; i < _touchFrameInfo.size(); i++){
-            if(tmpNodeName == _touchFrameInfo[i].touchFrameName){
+        for(auto& touchFrameInfo : _touchFrameInfo){
+            if(tmpNodeName == touchFrameInfo.touchFrameName){
                 cout << "touchesEnded : " << tmpNodeName << endl;
                 // Modelへ通知
-                notify(&(_touchFrameInfo[i].touchFrameName), TAP, &STRNOTHING);
+                notify(&(touchFrameInfo.touchFrameName), TAP, &STRNOTHING);
                 return;
             }
         }
@@ -230,4 +230,3 @@ void Controller::notify(const string *opeNord, TAPORDRAG TapOrDrag, const string
     tmp.eventKind = EVENT_P2P_RECEIVEDATA;
     [P2P sendData:([NSData dataWithBytes:&tmp length:sizeof(tmp)])];
 }
-
