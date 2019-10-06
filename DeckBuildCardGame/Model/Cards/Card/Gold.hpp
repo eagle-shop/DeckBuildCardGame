@@ -11,7 +11,7 @@ public:
     Gold();
     ~Gold();
     ActionDone action(PLAYERCARD_CONCRETECARD_IO *p);
-    const string* who();
+    const std::string* who();
 };
 
 #endif /* Gold_hpp */

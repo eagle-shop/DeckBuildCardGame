@@ -1,6 +1,8 @@
 #include "P2P_IF.hpp"
 #import "P2P.h"
 
+using namespace std;
+
 void P2P_sendData(void* data, int size){
     [P2P sendData:([NSData dataWithBytes:data length:size])];
 }

@@ -19,20 +19,20 @@ enum DRAGFLG : bool{
 // タッチ情報（1ノード）
 //////////////////////////////
 typedef struct{
-    const string    touchFrameName; // タッチフレーム名
-    TOUCHMOVE       moveFlg;        // なぞり操作可能か？
-    const string    parentName;     // なぞり操作で動かす親ノード名
-    void            (^blk)(void);   // ブロック処理（ドラッグなら完了後、タップなら押下時）
+    const std::string   touchFrameName; // タッチフレーム名
+    TOUCHMOVE           moveFlg;        // なぞり操作可能か？
+    const std::string   parentName;     // なぞり操作で動かす親ノード名
+    void                (^blk)(void);   // ブロック処理（ドラッグなら完了後、タップなら押下時）
 }TOUCHFRAMEINFO;
 
 //////////////////////////////
 // ドラッグ情報
 //////////////////////////////
 typedef struct{
-    DRAGFLG         dragFlg;        // ドラッグ中ならtrue
-    const string    *dragNode;      // ドラッグ中のノード
-    CGPoint         oldLocation;    // 前回座標
-    NSTimeInterval  oldTimestamp;   // 前回時間
+    DRAGFLG             dragFlg;        // ドラッグ中ならtrue
+    const std::string   *dragNode;      // ドラッグ中のノード
+    CGPoint             oldLocation;    // 前回座標
+    NSTimeInterval      oldTimestamp;   // 前回時間
 }DRAGINFO;
 
 //////////////////////////////
@@ -56,15 +56,15 @@ private:
     //////////////////////////////
     // プライベートメソッド
     //////////////////////////////
-    void notify(const string *opeNord, TAPORDRAG TapOrDrag, const string *moveTo);
+    void notify(const std::string *opeNord, TAPORDRAG TapOrDrag, const std::string *moveTo);
 
     //////////////////////////////
     // プライベート変数
     //////////////////////////////
-    Observer_forModel       *_observer;         // Modelへのupdate通知用
-    id                      _scene;             // ルートノード（シーン）
-    DRAGINFO                _dragInfo;          // ドラッグ情報管理用
-    vector<TOUCHFRAMEINFO>  _touchFrameInfo;    // タッチ情報管理用
+    Observer_forModel           *_observer;         // Modelへのupdate通知用
+    id                          _scene;             // ルートノード（シーン）
+    DRAGINFO                    _dragInfo;          // ドラッグ情報管理用
+    std::vector<TOUCHFRAMEINFO> _touchFrameInfo;    // タッチ情報管理用
 };
 
 #endif /* Controller_hpp */

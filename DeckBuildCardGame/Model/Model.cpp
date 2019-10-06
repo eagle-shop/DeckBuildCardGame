@@ -3,6 +3,8 @@
 #include "General.hpp"
 #include "Model.hpp"
 
+using namespace std;
+
 TIME _time = 0;// 暫定
 
 Model::Model():

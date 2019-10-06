@@ -4,6 +4,8 @@
 #include "EventVtoC.hpp"
 #import "P2P.h"
 
+using namespace std;
+
 // コンストラクタ
 Controller::Controller(SKScene *scene):
     _observer(NULL),

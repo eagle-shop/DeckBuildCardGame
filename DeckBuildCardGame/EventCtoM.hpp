@@ -4,11 +4,11 @@
 #include "General.hpp"
 
 typedef struct{
-    const string    *area;          // どのエリアの操作か
-    const string    *opeElement;    // 操作対象のカードorボタン
-    CARDINDEX       opeIndex;       // 操作対象のカード番号（なければ0）
-    TAPORDRAG       TapOrDrag;      // タップかドラッグか
-    const string    *dragMoveTo;    // ドラッグならドラッグ先（プレイエリアor廃棄置き場or・・・）
+    const std::string   *area;          // どのエリアの操作か
+    const std::string   *opeElement;    // 操作対象のカードorボタン
+    CARDINDEX           opeIndex;       // 操作対象のカード番号（なければ0）
+    TAPORDRAG           TapOrDrag;      // タップかドラッグか
+    const std::string   *dragMoveTo;    // ドラッグならドラッグ先（プレイエリアor廃棄置き場or・・・）
 }SELF;
 
 typedef struct{

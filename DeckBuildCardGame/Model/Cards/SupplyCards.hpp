@@ -6,19 +6,17 @@
 #include "EventMtoV.hpp"
 #include "Card.hpp"
 
-using namespace std;
-
 class SupplyCards{
 public:
     SupplyCards();
     ~SupplyCards();
     void init();
-    void createData(vector<SUPPLYCARDS> *supplyCards);
-    COINRELATIVE buy(const string *name, COINNUM coin);
-    void buyOtherPlayer(const string *name);
+    void createData(std::vector<SUPPLYCARDS> *supplyCards);
+    COINRELATIVE buy(const std::string *name, COINNUM coin);
+    void buyOtherPlayer(const std::string *name);
 
 private:
-    vector<SUPPLYCARDS> _supplyCards;
+    std::vector<SUPPLYCARDS> _supplyCards;
 };
 
 #endif /* SupplyCards_hpp */

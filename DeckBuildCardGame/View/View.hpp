@@ -8,13 +8,13 @@
 constexpr int CIRCLESIZE        = 9;        // カード枚数の円のサイズ
 constexpr int FONTSIZE          = 12;       // フォントサイズ
 
-const string FONTSET            = "American Typewriter Bold";   // フォント
-const string TOUCH              = "touch";
+const std::string FONTSET            = "American Typewriter Bold";   // フォント
+const std::string TOUCH              = "touch";
 
 // ノード名定義
-const string NODE_ACTIONCOUNT   = "actionCount";
-const string NODE_BUYCOUNT      = "buyCount";
-const string NODE_COINCOUNT     = "coinCount";
+const std::string NODE_ACTIONCOUNT   = "actionCount";
+const std::string NODE_BUYCOUNT      = "buyCount";
+const std::string NODE_COINCOUNT     = "coinCount";
 
 class View : virtual public Observer_forView{
 public:
@@ -29,12 +29,12 @@ private:
     void drawPhaseSW(Phase phase);
     void drawOtherSW(Phase phase);
     //    void drawPopup(string popup);
-    void drawSupplyCards(vector<SUPPLYCARDS> *supplyCards);
+    void drawSupplyCards(std::vector<SUPPLYCARDS> *supplyCards);
     void drawTrashCards(CARDNUM cardNum);
     void drawPlayerCards(PLAYERCARDS *playerCards);
-    void delNode(vector<const string*> *name);
-    void createNotifyData(const string *touchFrameName, TOUCHMOVE moveFlg, const string *parentName, EVENT_VtoC *event);
-    SKSpriteNode* drawCard(const string *cardName, CGPoint position, CGPoint anchor, SKNode *drawNode, const string *nodeName, DrawState drawState);
+    void delNode(std::vector<const std::string*> *name);
+    void createNotifyData(const std::string *touchFrameName, TOUCHMOVE moveFlg, const std::string *parentName, EVENT_VtoC *event);
+    SKSpriteNode* drawCard(const std::string *cardName, CGPoint position, CGPoint anchor, SKNode *drawNode, const std::string *nodeName, DrawState drawState);
     SKShapeNode* drawCircleNum(int num, SKNode *drawNode);
     
     //////////////////////////////

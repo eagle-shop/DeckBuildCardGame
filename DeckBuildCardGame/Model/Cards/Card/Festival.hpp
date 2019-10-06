@@ -3,7 +3,6 @@
 
 #include "Card.hpp"
 
-
 //////////////////////////////
 // 祝祭クラス
 //////////////////////////////
@@ -12,7 +11,7 @@ public:
     Festival();
     ~Festival();
     ActionDone action(PLAYERCARD_CONCRETECARD_IO *p);
-    const string* who();
+    const std::string* who();
 private:
 };
 

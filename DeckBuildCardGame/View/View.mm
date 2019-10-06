@@ -7,6 +7,8 @@
 #include "General.hpp"
 #include "View.hpp"
 
+using namespace std;
+
 constexpr int CARDW = 6;
 
 View::View(SKScene *scene):_scene(scene){

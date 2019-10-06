@@ -11,7 +11,7 @@ public:
     Province();
     ~Province();
     ActionDone action(PLAYERCARD_CONCRETECARD_IO *p);
-    const string* who();
+    const std::string* who();
 };
 
 #endif /* Province_hpp */

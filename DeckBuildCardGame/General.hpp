@@ -5,13 +5,11 @@
 #include <string>
 #include <map>
 
-using namespace std;
-
 // 文字列判定用マクロ
-#define STR_SEARCH(str, word) ((str->find(word) != string::npos) ? true : false)
+#define STR_SEARCH(str, word) ((str->find(word) != std::string::npos) ? true : false)
 
 // 文字列に指定した文字が存在していれば、それを返す
-void getString(const string **dst, const string *allString, vector<const string*> *partString);
+void getString(const std::string **dst, const std::string *allString, std::vector<const std::string*> *partString);
 
 // とりあえずプリミティブ型を再定義してみる
 using CARDNUM           = unsigned long;    // カード枚数
@@ -94,21 +92,21 @@ constexpr int STRING_MAX = 64;  // 文字列の最大サイズ
 //////////////////////////////
 // constな文字列群
 //////////////////////////////
-const string STRNOTHING         = "";
+const std::string STRNOTHING         = "";
 
-const string PLAYAREA           = "playArea";
-const string SUPPLYAREA         = "supplyArea";
-const string TRASHAREA          = "trashArea";
+const std::string PLAYAREA           = "playArea";
+const std::string SUPPLYAREA         = "supplyArea";
+const std::string TRASHAREA          = "trashArea";
 
 // （追加したらALLELEにも追加すること）
-const string PHASESWENDACTION   = "swEndAction";
-const string PHASESWENDBUY      = "swEndBuy";
-const string PHASESWENDTURN     = "swEndTurn";
-const string OTHERSWCOMPLETE    = "swComplete";
-const string OTHERSWCHANSEL     = "swChansel";
+const std::string PHASESWENDACTION   = "swEndAction";
+const std::string PHASESWENDBUY      = "swEndBuy";
+const std::string PHASESWENDTURN     = "swEndTurn";
+const std::string OTHERSWCOMPLETE    = "swComplete";
+const std::string OTHERSWCHANSEL     = "swChansel";
 
 // エリア名（追加したらALLAREAにも追加すること）
-using AREA = const string;
+using AREA = const std::string;
 
 AREA SUPPLY     = "supply";
 AREA TRASH      = "trash";
@@ -141,31 +139,31 @@ typedef struct{
 }EFFECTINFO;
 
 typedef struct{
-    EFFECTINFO  effectInfo;
-    string      fileName;
+    EFFECTINFO      effectInfo;
+    std::string     fileName;
 }CARDINFO;
 
 //////////////////////////////
 // カードリスト（追加したらALLELEとCARDLISTにも追加すること）
 // サプライとプレイヤーカードクラスにも
 //////////////////////////////
-const string COPPER     = "COPPER";     // 銅貨
-const string SILVER     = "SILVER";     // 銀貨
-const string GOLD       = "GOLD";       // 金貨
-const string ESTATE     = "ESTATE";     // 屋敷
-const string DUCHY      = "DUCHY";      // 公領
-const string PROVINCE   = "PROVINCE";   // 属州
-const string CURSE      = "CURSE";      // 呪い
-const string CHAPEL     = "CHAPEL";     // 礼拝堂
-const string CELLAR     = "CELLAR";     // 地下貯蔵庫
-const string WOODCUTTER = "WOODCUTTER"; // 木こり
-const string SMITHY     = "SMITHY";     // 鍛冶屋
-const string MARKET     = "MARKET"; // 市場
-const string LABOTATORY = "LABOTATORY"; // 研究所
-const string FESTIVAL   = "FESTIVAL";   // 祝祭
-const string ADVENTURER   = "ADVENTURER";   // 冒険者
-const string TRASHCARD  = "TRASH";      // 廃棄置き場
-const string BACKCARD   = "BACKCARD";   // カードの裏面
+const std::string COPPER        = "COPPER";     // 銅貨
+const std::string SILVER        = "SILVER";     // 銀貨
+const std::string GOLD          = "GOLD";       // 金貨
+const std::string ESTATE        = "ESTATE";     // 屋敷
+const std::string DUCHY         = "DUCHY";      // 公領
+const std::string PROVINCE      = "PROVINCE";   // 属州
+const std::string CURSE         = "CURSE";      // 呪い
+const std::string CHAPEL        = "CHAPEL";     // 礼拝堂
+const std::string CELLAR        = "CELLAR";     // 地下貯蔵庫
+const std::string WOODCUTTER    = "WOODCUTTER"; // 木こり
+const std::string SMITHY        = "SMITHY";     // 鍛冶屋
+const std::string MARKET        = "MARKET";     // 市場
+const std::string LABOTATORY    = "LABOTATORY"; // 研究所
+const std::string FESTIVAL      = "FESTIVAL";   // 祝祭
+const std::string ADVENTURER    = "ADVENTURER"; // 冒険者
+const std::string TRASHCARD     = "TRASH";      // 廃棄置き場
+const std::string BACKCARD      = "BACKCARD";   // カードの裏面
 
 #define ALLELE {\
     &PHASESWENDACTION,\
@@ -225,7 +223,7 @@ public:
         return inst;
     }
     // カード情報
-    map<const string, CARDINFO> _cardInfo;
+    std::map<const std::string, CARDINFO> _cardInfo;
 
 private:
     CardInfo():_cardInfo(CARDLIST){};

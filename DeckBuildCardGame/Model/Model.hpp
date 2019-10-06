@@ -8,8 +8,6 @@
 #include "PlayerCards.hpp"
 #include "TrashCards.hpp"
 
-using namespace std;
-
 constexpr unsigned long ALLCARDS = ULONG_MAX;
 
 //////////////////////////////

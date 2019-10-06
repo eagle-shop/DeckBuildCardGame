@@ -3,7 +3,6 @@
 
 #include "Card.hpp"
 
-
 //////////////////////////////
 // 地下貯蔵庫クラス
 //////////////////////////////
@@ -12,9 +11,9 @@ public:
     Cellar();
     ~Cellar();
     ActionDone action(PLAYERCARD_CONCRETECARD_IO *p);
-    const string* who();
+    const std::string* who();
 private:
-    vector<CARDINDEX> _select;      // 選択状態のカード番号を保持
+    std::vector<CARDINDEX> _select;      // 選択状態のカード番号を保持
 };
 
 #endif /* Cellar_hpp */

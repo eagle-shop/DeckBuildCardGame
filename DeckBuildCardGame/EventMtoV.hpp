@@ -10,22 +10,20 @@
 #include <string>
 #include "General.hpp"
 
-using namespace std;
-
 typedef struct{
-    const string            *cardName;      // カード名
+    const std::string       *cardName;      // カード名
     CARDNUM                 num;            // 残り枚数
     DrawState               drawState;      // 表示状態
 }SUPPLYCARDS;
 
 typedef struct{
-    vector<const string*>   handCardsName;  // 手札のカード名
-    vector<DrawState>       drawState;      // 表示状態
+    std::vector<const std::string*> handCardsName;  // 手札のカード名
+    std::vector<DrawState>          drawState;      // 表示状態
 }HANDCARDS;
 
 typedef struct{
-    HANDCARDS               handCards;      // 手札のカード
-    vector<const string*>   playCardsName;  // プレイエリアのカード名
+    HANDCARDS                       handCards;      // 手札のカード
+    std::vector<const std::string*> playCardsName;  // プレイエリアのカード名
 //    const string            *discardName;   // 捨札のカード名（一番上だけ）
     CARDNUM                 deckCardNum;    // 山札の枚数
 }PLAYERCARDS;
@@ -37,12 +35,12 @@ typedef struct{
 }ABCCOUNT;
 
 typedef struct{
-    ABCCOUNT                abcCount;
-    Phase                   phase;
+    ABCCOUNT                        abcCount;
+    Phase                           phase;
 //    const string            *popup;
-    vector<SUPPLYCARDS>     supplyCards;
-    PLAYERCARDS             playerCards;
-    vector<const string*>   trashCards;
+    std::vector<SUPPLYCARDS>        supplyCards;
+    PLAYERCARDS                     playerCards;
+    std::vector<const std::string*> trashCards;
 }EVENT_MtoV;
 
 #endif /* EventMtoV_hpp */

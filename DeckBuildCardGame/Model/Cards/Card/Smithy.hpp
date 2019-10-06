@@ -3,7 +3,6 @@
 
 #include "Card.hpp"
 
-
 //////////////////////////////
 // 鍛冶屋クラス
 //////////////////////////////
@@ -12,7 +11,7 @@ public:
     Smithy();
     ~Smithy();
     ActionDone action(PLAYERCARD_CONCRETECARD_IO *p);
-    const string* who();
+    const std::string* who();
 private:
 };
 

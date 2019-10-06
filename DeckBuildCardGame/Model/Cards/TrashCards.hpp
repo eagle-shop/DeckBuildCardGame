@@ -4,17 +4,15 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class TrashCards{
 public:
     TrashCards();
     ~TrashCards();
-    void addCard(const string *name);
-    void addCardOtherPlayer(const string *name);
-    void createData(vector<const string*> *name);
+    void addCard(const std::string *name);
+    void addCardOtherPlayer(const std::string *name);
+    void createData(std::vector<const std::string*> *name);
 private:
-    vector<const string*> _trashCards;
+    std::vector<const std::string*> _trashCards;
 };
 
 #endif /* TrashCards_hpp */
