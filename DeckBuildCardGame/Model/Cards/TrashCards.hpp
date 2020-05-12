@@ -12,7 +12,7 @@ public:
     void addCardOtherPlayer(const std::string *name);
     void createData(std::vector<const std::string*> *name);
 private:
-    std::vector<const std::string*> _trashCards;
+    std::vector<const std::string*> m_trashCards;
 };
 
 #endif /* TrashCards_hpp */

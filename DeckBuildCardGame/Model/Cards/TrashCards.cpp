@@ -16,7 +16,7 @@ TrashCards::~TrashCards(){
 }
 
 void TrashCards::addCard(const string *name){
-    _trashCards.push_back(name);
+    m_trashCards.push_back(name);
     // P2P通知
     EVENT_CtoM tmp = {};
     P2P_createData(&tmp, EVENT_P2P_RECEIVEDATA, PHASE_UNKNOWN, &TRASHAREA, name);
@@ -24,9 +24,9 @@ void TrashCards::addCard(const string *name){
 }
 
 void TrashCards::addCardOtherPlayer(const string *name){
-    _trashCards.push_back(name);
+    m_trashCards.push_back(name);
 }
 
 void TrashCards::createData(vector<const string*> *name){
-    *name = _trashCards;
+    *name = m_trashCards;
 }

@@ -23,7 +23,7 @@ public:
     void addObserver(Observer_forController *observer);
     void update(EVENT_MtoV *event);
     void init();
-    
+
 private:
     void drawABCcount(ABCCOUNT *abcCount);
     void drawPhaseSW(Phase phase);
@@ -36,13 +36,12 @@ private:
     void createNotifyData(const std::string *touchFrameName, TOUCHMOVE moveFlg, const std::string *parentName, EVENT_VtoC *event);
     SKSpriteNode* drawCard(const std::string *cardName, CGPoint position, CGPoint anchor, SKNode *drawNode, const std::string *nodeName, DrawState drawState);
     SKShapeNode* drawCircleNum(int num, SKNode *drawNode);
-    
+
     //////////////////////////////
     // プライベート変数
     //////////////////////////////
-    Observer_forController  *_observer;
-    SKScene                 *_scene;
+    Observer_forController  *m_observer;
+    SKScene                 *m_scene;
 };
 
 #endif /* View_hpp */
-

@@ -14,19 +14,19 @@ PlayerCards::PlayerCards(){
 PlayerCards::~PlayerCards(){
     cout << "delete PlayerCards" << endl;
 
-    for(auto& handCard : _handCards.handCards){
+    for(auto& handCard : m_handCards.handCards){
         delete handCard;
     }
-    for(auto& discardCard : _discardCards){
+    for(auto& discardCard : m_discardCards){
         delete discardCard;
     }
-    for(auto& deckCard : _deckCards){
+    for(auto& deckCard : m_deckCards){
         delete deckCard;
     }
-    for(auto&playCard : _playCards){
+    for(auto&playCard : m_playCards){
         delete playCard;
     }
-    for(auto& tmpCard : _tmpCards){
+    for(auto& tmpCard : m_tmpCards){
         delete tmpCard;
     }
 }
@@ -35,55 +35,55 @@ PlayerCards::~PlayerCards(){
 void PlayerCards::init(){
     // 初期の銅貨7枚、屋敷3枚を生成して捨札に追加
     for(auto i = 0; i < 7; i++){
-        _discardCards.push_back(new Copper());
+        m_discardCards.push_back(new Copper());
     }
     for(auto i = 0; i < 3; i++){
-        _discardCards.push_back(new Estate());
+        m_discardCards.push_back(new Estate());
     }
     // 捨札をシャッフルして山札に
     shuffleDiscardToDeck();
     // 山札から5枚を手札に
-    moveCards(&_handCards.handCards, &_deckCards, 5, BACK);
+    moveCards(&m_handCards.handCards, &m_deckCards, 5, BACK);
 }
 
 void PlayerCards::createData(PLAYERCARDS *playerCards){
     // 通知データ生成
-    playerCards->deckCardNum = _deckCards.size();
+    playerCards->deckCardNum = m_deckCards.size();
 
-    for(auto handCard : _handCards.handCards){
+    for(auto handCard : m_handCards.handCards){
         // カード名をコピー
         playerCards->handCards.handCardsName.push_back(handCard->who());
         // 表示状態をコピー ????
         playerCards->handCards.drawState.push_back(DRAW_NOMAL);
     }
-    for(auto playCard : _playCards){
+    for(auto playCard : m_playCards){
         // カード名をコピー
         playerCards->playCardsName.push_back(playCard->who());
     }
     // ????
-    if(_handCards.drawState.size() > 0){
-        playerCards->handCards.drawState = _handCards.drawState;
-        _handCards.drawState.clear();
+    if(m_handCards.drawState.size() > 0){
+        playerCards->handCards.drawState = m_handCards.drawState;
+        m_handCards.drawState.clear();
     }
 }
 
 // プレイヤーカード全出力
 void PlayerCards::allPrint(){
     cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << endl;
-    for(auto i = 0; i < _deckCards.size(); i++){
-        cout << "[_deckCards " << i << "] " << *(_deckCards[i]->who()) << endl;
+    for(auto i = 0; i < m_deckCards.size(); i++){
+        cout << "[m_deckCards " << i << "] " << *(m_deckCards[i]->who()) << endl;
     }
-    for(auto i = 0; i < _handCards.handCards.size(); i++){
-        cout << "[_handCards " << i << "] " << *(_handCards.handCards[i]->who()) << endl;
+    for(auto i = 0; i < m_handCards.handCards.size(); i++){
+        cout << "[m_handCards " << i << "] " << *(m_handCards.handCards[i]->who()) << endl;
     }
-    for(auto i = 0; i < _discardCards.size(); i++){
-        cout << "[_discardCards " << i << "] " << *(_discardCards[i]->who()) << endl;
+    for(auto i = 0; i < m_discardCards.size(); i++){
+        cout << "[m_discardCards " << i << "] " << *(m_discardCards[i]->who()) << endl;
     }
-    for(auto i = 0; i < _playCards.size(); i++){
-        cout << "[_playCards " << i << "] " << *(_playCards[i]->who()) << endl;
+    for(auto i = 0; i < m_playCards.size(); i++){
+        cout << "[m_playCards " << i << "] " << *(m_playCards[i]->who()) << endl;
     }
-    for(auto i = 0; i < _tmpCards.size(); i++){
-        cout << "[_tmpCards " << i << "] " << *(_tmpCards[i]->who()) << endl;
+    for(auto i = 0; i < m_tmpCards.size(); i++){
+        cout << "[m_tmpCards " << i << "] " << *(m_tmpCards[i]->who()) << endl;
     }
     cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
 }
@@ -91,58 +91,58 @@ void PlayerCards::allPrint(){
 // カード一枚購入して捨札に追加
 void PlayerCards::buy(const string *name){
     if(*name == COPPER){
-        _discardCards.push_back(new Copper());
+        m_discardCards.push_back(new Copper());
     }
     else if(*name == SILVER){
-        _discardCards.push_back(new Silver());
+        m_discardCards.push_back(new Silver());
     }
     else if(*name == GOLD){
-        _discardCards.push_back(new Gold());
+        m_discardCards.push_back(new Gold());
     }
     else if(*name == ESTATE){
-        _discardCards.push_back(new Estate());
+        m_discardCards.push_back(new Estate());
     }
     else if(*name == DUCHY){
-        _discardCards.push_back(new Duchy());
+        m_discardCards.push_back(new Duchy());
     }
     else if(*name == PROVINCE){
-        _discardCards.push_back(new Province());
+        m_discardCards.push_back(new Province());
     }
     else if(*name == CURSE){
-        _discardCards.push_back(new Curse());
+        m_discardCards.push_back(new Curse());
     }
     else if(*name == CHAPEL){
-        _discardCards.push_back(new Chapel());
+        m_discardCards.push_back(new Chapel());
     }
     else if(*name == CELLAR){
-        _discardCards.push_back(new Cellar());
+        m_discardCards.push_back(new Cellar());
     }
     else if(*name == WOODCUTTER){
-        _discardCards.push_back(new Woodcutter());
+        m_discardCards.push_back(new Woodcutter());
     }
     else if(*name == SMITHY){
-        _discardCards.push_back(new Smithy());
+        m_discardCards.push_back(new Smithy());
     }
     else if(*name == MARKET){
-        _discardCards.push_back(new Market());
+        m_discardCards.push_back(new Market());
     }
     else if(*name == LABOTATORY){
-        _discardCards.push_back(new Laboratory());
+        m_discardCards.push_back(new Laboratory());
     }
     else if(*name == FESTIVAL){
-        _discardCards.push_back(new Festival());
+        m_discardCards.push_back(new Festival());
     }
     else if(*name == ADVENTURER){
-        _discardCards.push_back(new Adventurer());
+        m_discardCards.push_back(new Adventurer());
     }
 }
 
 // クリーンアップ
 void PlayerCards::cleanup(){
     // 手札から捨札へ
-    moveCards(&_discardCards, &_handCards.handCards, ALLCARDS, FRONT);
+    moveCards(&m_discardCards, &m_handCards.handCards, ALLCARDS, FRONT);
     // プレイエリアから捨札へ
-    moveCards(&_discardCards, &_playCards, ALLCARDS, FRONT);
+    moveCards(&m_discardCards, &m_playCards, ALLCARDS, FRONT);
     // 山札から手札へ
     moveDeckToHand(5);
 }
@@ -150,7 +150,7 @@ void PlayerCards::cleanup(){
 // 指定した名前のカードが手札にあれば、アクション実施してプレイエリアへ移動
 ActionDone PlayerCards::action(MODEL_PLAYERCARD_IO* modelPlayerCard_ioData){
     // パラメータチェック
-    if(_handCards.handCards.size() <= modelPlayerCard_ioData->notifyData.opeIndex){
+    if(m_handCards.handCards.size() <= modelPlayerCard_ioData->notifyData.opeIndex){
         return ACTIONUNDONE;
     }
     // 通知データ生成
@@ -162,14 +162,14 @@ ActionDone PlayerCards::action(MODEL_PLAYERCARD_IO* modelPlayerCard_ioData){
     auto i = 0;
     do{
         allPrint();
-        ret = _handCards.handCards[modelPlayerCard_ioData->notifyData.opeIndex]->action(&tmp);
+        ret = m_handCards.handCards[modelPlayerCard_ioData->notifyData.opeIndex]->action(&tmp);
         if((ret != ACTIONDONE) && (ret != ACTIONWAIT) && (ret != ACTIONCONTINUE)){
             break;
         }
         else if((ret == ACTIONDONE) || (ret == ACTIONWAIT)){
             modelPlayerCard_ioData->resultData = tmp.resultData.data;
             // 手札からプレイエリアへ
-            moveCards(&_playCards, &_handCards.handCards, modelPlayerCard_ioData->notifyData.opeIndex);
+            moveCards(&m_playCards, &m_handCards.handCards, modelPlayerCard_ioData->notifyData.opeIndex);
             // P2P通知
             EVENT_CtoM tmpData = {};
             P2P_createData(&tmpData, EVENT_P2P_RECEIVEDATA, PHASE_UNKNOWN, &PLAYAREA, modelPlayerCard_ioData->notifyData.opeElement);
@@ -182,14 +182,14 @@ ActionDone PlayerCards::action(MODEL_PLAYERCARD_IO* modelPlayerCard_ioData){
                 tmp = {};
                 tmp.notifyData.actionPhase = PHASE_UNKNOWN;
                 // 山札か捨札があるとき
-                if((_deckCards.size() > 0) || (_discardCards.size() > 0)){
-                    if(_deckCards.size() <= 0){
+                if((m_deckCards.size() > 0) || (m_discardCards.size() > 0)){
+                    if(m_deckCards.size() <= 0){
                         // 捨札をシャッフルして山札に
                         shuffleDiscardToDeck();
                     }
-                    tmp.notifyData.data.opeElement = _deckCards[_deckCards.size() - 1]->who();
+                    tmp.notifyData.data.opeElement = m_deckCards[m_deckCards.size() - 1]->who();
                     tmp.notifyData.data.opeIndex = i;
-                    moveCards(&_tmpCards, &_deckCards, _deckCards.size() - 1);
+                    moveCards(&m_tmpCards, &m_deckCards, m_deckCards.size() - 1);
                 }
                 // 山札も捨札も無いとき
                 else{
@@ -209,12 +209,12 @@ ActionDone PlayerCards::action(MODEL_PLAYERCARD_IO* modelPlayerCard_ioData){
         // データを降順にソート
         sort(tmp.resultData.data.cardIndex.begin(), tmp.resultData.data.cardIndex.end(), greater<int>());
         for(auto cardIndex : tmp.resultData.data.cardIndex){
-            moveCards(&_handCards.handCards, &_tmpCards, cardIndex);
+            moveCards(&m_handCards.handCards, &m_tmpCards, cardIndex);
         }
     }
     // 一時置き場にあるカードを捨札に移動
-    if(_tmpCards.size() > 0){
-        moveCards(&_discardCards, &_tmpCards, ALLCARDS, FRONT);
+    if(m_tmpCards.size() > 0){
+        moveCards(&m_discardCards, &m_tmpCards, ALLCARDS, FRONT);
     }
     return ret;
 }
@@ -222,7 +222,7 @@ ActionDone PlayerCards::action(MODEL_PLAYERCARD_IO* modelPlayerCard_ioData){
 // アクションがユーザ待ちの場合は、操作内容を通知する
 ActionDone PlayerCards::actionForWaitAction(MODEL_PLAYERCARD_IO* modelPlayerCard_ioData){
     // パラメータチェック
-    if(_playCards.size() == 0){
+    if(m_playCards.size() == 0){
         return ACTIONUNDONE;
     }
     // 通知データ生成
@@ -232,18 +232,18 @@ ActionDone PlayerCards::actionForWaitAction(MODEL_PLAYERCARD_IO* modelPlayerCard
         tmp.notifyData.data = modelPlayerCard_ioData->notifyData;
     }
     // アクション実施
-    auto ret = _playCards[_playCards.size() - 1]->action(&tmp);
+    auto ret = m_playCards[m_playCards.size() - 1]->action(&tmp);
     modelPlayerCard_ioData->resultData = tmp.resultData.data;
     // 手札を選択状態にする
     if(tmp.resultData.data.ope == SELECTHANDCARD){
-        _handCards.drawState.clear();
+        m_handCards.drawState.clear();
         // まず全部通常状態で初期化
-        for(auto i = 0; i < _handCards.handCards.size(); i++){
-            _handCards.drawState.push_back(DRAW_NOMAL);
+        for(auto i = 0; i < m_handCards.handCards.size(); i++){
+            m_handCards.drawState.push_back(DRAW_NOMAL);
         }
         // 指定の番号だけ選択状態に変更
         for(auto cardIndex : tmp.resultData.data.cardIndex){
-            _handCards.drawState[cardIndex] = DRAW_SELECT;
+            m_handCards.drawState[cardIndex] = DRAW_SELECT;
         }
     }
     // 選択した手札を捨札に移動する
@@ -251,7 +251,7 @@ ActionDone PlayerCards::actionForWaitAction(MODEL_PLAYERCARD_IO* modelPlayerCard
         // データを降順にソート
         sort(tmp.resultData.data.cardIndex.begin(), tmp.resultData.data.cardIndex.end(), greater<int>());
         for(auto cardIndex : tmp.resultData.data.cardIndex){
-            moveCards(&_discardCards, &_handCards.handCards, cardIndex);
+            moveCards(&m_discardCards, &m_handCards.handCards, cardIndex);
         }
     }
     // カード移動がある場合
@@ -264,7 +264,7 @@ ActionDone PlayerCards::actionForWaitAction(MODEL_PLAYERCARD_IO* modelPlayerCard
 
 // 指定した名前のカードが手札にあり、財宝カードならプレイエリアに移動してコイン数を返す
 COINNUM PlayerCards::treasureMoveToPlayArea(CARDINDEX cardindex){
-    const string *name = _handCards.handCards[cardindex]->who();
+    const string *name = m_handCards.handCards[cardindex]->who();
     // カード情報参照
     CardInfo &cardInfo = CardInfo::getInstance();
     // 財宝カードの場合
@@ -272,7 +272,7 @@ COINNUM PlayerCards::treasureMoveToPlayArea(CARDINDEX cardindex){
         // コインを取得
         auto ret = cardInfo._cardInfo[*name].effectInfo.coin;
         // 手札からプレイエリアへ
-        moveCards(&_playCards, &_handCards.handCards, cardindex);
+        moveCards(&m_playCards, &m_handCards.handCards, cardindex);
         // P2P通知
         EVENT_CtoM tmpData = {};
         P2P_createData(&tmpData, EVENT_P2P_RECEIVEDATA, PHASE_UNKNOWN, &PLAYAREA, name);
@@ -286,12 +286,12 @@ COINNUM PlayerCards::treasureMoveToPlayArea(CARDINDEX cardindex){
 const string* PlayerCards::removeCard(AREA* area, CARDINDEX cardIndex){
     // 手札
     if(STR_SEARCH(area, HAND)){
-        if(cardIndex >= _handCards.handCards.size()){
+        if(cardIndex >= m_handCards.handCards.size()){
             return NULL;
         }
-        auto tmp = _handCards.handCards[cardIndex];
+        auto tmp = m_handCards.handCards[cardIndex];
         auto name = tmp->who();
-        _handCards.handCards.erase(_handCards.handCards.begin() + cardIndex);
+        m_handCards.handCards.erase(m_handCards.handCards.begin() + cardIndex);
         delete tmp;
         return name;
     }
@@ -301,16 +301,16 @@ const string* PlayerCards::removeCard(AREA* area, CARDINDEX cardIndex){
 // 捨札をシャッフルして山札に移動
 bool PlayerCards::shuffleDiscardToDeck(){
     // 山札にカードがあればエラー
-    if(_deckCards.size() > 0){
+    if(m_deckCards.size() > 0){
         return false;
     }
     // ランダム変数生成
     random_device rd;
     mt19937_64 mt(rd());
     // 捨札シャッフル
-    shuffle(_discardCards.begin(), _discardCards.end(), mt);
+    shuffle(m_discardCards.begin(), m_discardCards.end(), mt);
     // 捨札 -> 山札　全移動
-    moveCards(&_deckCards, &_discardCards, ALLCARDS, FRONT);
+    moveCards(&m_deckCards, &m_discardCards, ALLCARDS, FRONT);
 
     return true;
 }
@@ -318,13 +318,13 @@ bool PlayerCards::shuffleDiscardToDeck(){
 // 山札から手札に移動
 void PlayerCards::moveDeckToHand(CARDNUM cardNum){
     // 山札から手札へ
-    auto handNum = moveCards(&_handCards.handCards, &_deckCards, cardNum, BACK);
+    auto handNum = moveCards(&m_handCards.handCards, &m_deckCards, cardNum, BACK);
     // 手札に指定枚数なければ捨札から山札へ
     if(handNum != 0){
         // 捨札をシャッフルして山札に
         shuffleDiscardToDeck();
         // 山札から手札へ
-        moveCards(&_handCards.handCards, &_deckCards, handNum, BACK);
+        moveCards(&m_handCards.handCards, &m_deckCards, handNum, BACK);
     }
 }
 
@@ -366,27 +366,27 @@ bool PlayerCards::moveCards(vector<Card*> *dst, vector<Card*> *src, CARDINDEX in
 }
 
 void PlayerCards::addPlayCardOtherPlayer(const string *name){
-    _playCardsOtherPlayer.push_back(name);
+    m_playCardsOtherPlayer.push_back(name);
 }
 
 void PlayerCards::clearPlayCardOtherPlayer(){
-    _playCardsOtherPlayer.clear();
+    m_playCardsOtherPlayer.clear();
 }
 
 void PlayerCards::createDataOtherPlayerCards(PLAYERCARDS *playerCards){
     // 通知データ生成
-    playerCards->deckCardNum = _deckCards.size();
-    for(auto handCards : _handCards.handCards){
+    playerCards->deckCardNum = m_deckCards.size();
+    for(auto handCards : m_handCards.handCards){
         // カード名をコピー
         playerCards->handCards.handCardsName.push_back(handCards->who());
         // 表示状態をコピー ????
         playerCards->handCards.drawState.push_back(DRAW_NOMAL);
     }
     // カード名をコピー
-    playerCards->playCardsName = _playCardsOtherPlayer;// ここだけ変えてみた
+    playerCards->playCardsName = m_playCardsOtherPlayer;// ここだけ変えてみた
     // ????
-    if(_handCards.drawState.size() > 0){
-        playerCards->handCards.drawState = _handCards.drawState;
-        _handCards.drawState.clear();
+    if(m_handCards.drawState.size() > 0){
+        playerCards->handCards.drawState = m_handCards.drawState;
+        m_handCards.drawState.clear();
     }
 }

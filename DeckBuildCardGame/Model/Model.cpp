@@ -9,13 +9,13 @@ TIME _time = 0;// 暫定
 
 Model::Model():
 #if 0  // リリース
-    _phase(PHASE_OTHERPLAYER),
+    m_phase(PHASE_OTHERPLAYER),
 #else   // デバッグ
-    _phase(PHASE_ACTION),
+    m_phase(PHASE_ACTION),
 #endif
-    _actionCount(1),
-    _buyCount(1),
-    _coinCount(0){
+    m_actionCount(1),
+    m_buyCount(1),
+    m_coinCount(0){
     cout << "create Model" << endl;
 }
 
@@ -24,7 +24,7 @@ Model::~Model(){
 }
 
 void Model::addObserver(Observer_forView *observer){
-    _observer = observer;
+    m_observer = observer;
 }
 
 Phase Model::update(EVENT_CtoM *event){
@@ -32,10 +32,10 @@ Phase Model::update(EVENT_CtoM *event){
     if(event->eventKind == EVENT_P2P_CONNECTED){
         // 先行後攻の判定（とりあえず時間で判断）
         if((_time != 0) && (_time > event->time)){
-            _phase = PHASE_ACTION;
+            m_phase = PHASE_ACTION;
         }
         else if((_time != 0) && (_time < event->time)){
-            _phase = PHASE_OTHERPLAYER;
+            m_phase = PHASE_OTHERPLAYER;
         }
         else{
             // 異常終了（暫定）
@@ -45,9 +45,9 @@ Phase Model::update(EVENT_CtoM *event){
     // P2P接続先からのデータ受信時
     else if(event->eventKind == EVENT_P2P_RECEIVEDATA){
         // 相手のフェーズが終わった場合
-        if((_phase == PHASE_OTHERPLAYER) && (event->receiveData.phase == PHASE_OTHERPLAYER)){
-            _phase = PHASE_ACTION;
-            _playerCards.clearPlayCardOtherPlayer();
+        if((m_phase == PHASE_OTHERPLAYER) && (event->receiveData.phase == PHASE_OTHERPLAYER)){
+            m_phase = PHASE_ACTION;
+            m_playerCards.clearPlayCardOtherPlayer();
         }
         // 相手のフェーズの場合
         else{
@@ -64,21 +64,21 @@ Phase Model::update(EVENT_CtoM *event){
             }
             // サプライからカード購入
             if(*tmpAreaName == SUPPLY){
-                _supplyCards.buyOtherPlayer(tmpCardName);
+                m_supplyCards.buyOtherPlayer(tmpCardName);
             }
             // カード廃棄
             else if(*tmpAreaName == TRASH){
-                _trashCards.addCardOtherPlayer(tmpCardName);
+                m_trashCards.addCardOtherPlayer(tmpCardName);
             }
             // プレイエリアにカード移動
             else if(*tmpAreaName == PLAY){
-                _playerCards.addPlayCardOtherPlayer(tmpCardName);
+                m_playerCards.addPlayCardOtherPlayer(tmpCardName);
             }
         }
     }
     // 自分のフェーズ
     else if(event->eventKind == EVENT_SELF){
-        switch(_phase){
+        switch(m_phase){
             case PHASE_ACTION:
                 actionPhase(event);
                 break;
@@ -93,9 +93,9 @@ Phase Model::update(EVENT_CtoM *event){
 
             case PHASE_CLEANUP:
                 cleanupPhase();
-                _phase = PHASE_OTHERPLAYER;
+                m_phase = PHASE_OTHERPLAYER;
 #if 1   // デバッグ
-                _phase = PHASE_ACTION;
+                m_phase = PHASE_ACTION;
 #endif
                 break;
 
@@ -105,15 +105,15 @@ Phase Model::update(EVENT_CtoM *event){
     }
     // 描画要求
     draw();
-    _playerCards.allPrint();
-    return _phase;
+    m_playerCards.allPrint();
+    return m_phase;
 }
 
 void Model::init(){
     // サプライ生成
-    _supplyCards.init();
+    m_supplyCards.init();
     // プレイヤーカード生成
-    _playerCards.init();
+    m_playerCards.init();
     // 描画要求
     draw();
 }
@@ -127,11 +127,11 @@ void Model::actionPhase(EVENT_CtoM *event){
     if(STR_SEARCH(event->self.area, PHASE)){
         // アクション終了の場合
         if(STR_SEARCH(event->self.opeElement, PHASESWENDACTION)){
-            _phase = PHASE_BUY;
+            m_phase = PHASE_BUY;
         }
         // ターン終了の場合
         else if(STR_SEARCH(event->self.opeElement, PHASESWENDTURN)){
-            _phase = PHASE_CLEANUP;
+            m_phase = PHASE_CLEANUP;
             update(event);
         }
         return;
@@ -147,13 +147,13 @@ void Model::actionPhase(EVENT_CtoM *event){
             // アクション完了の場合
             if(ret == ACTIONDONE){
                 // アクションが無くなったら購入フェーズへ
-                if(_actionCount <= 0){
-                    _phase = PHASE_BUY;
+                if(m_actionCount <= 0){
+                    m_phase = PHASE_BUY;
                 }
             }
             // ユーザ操作待ちの場合
             else if(ret == ACTIONWAIT){
-                _phase = PHASE_ACTIONWAIT;
+                m_phase = PHASE_ACTIONWAIT;
             }
         }
         return;
@@ -166,11 +166,11 @@ void Model::actionWaitPhase(EVENT_CtoM *event){
     auto ret = action(event);
     // アクション完了の場合
     if(ret == ACTIONDONE){
-        if(_actionCount <= 0){
-            _phase = PHASE_BUY;
+        if(m_actionCount <= 0){
+            m_phase = PHASE_BUY;
         }
         else{
-            _phase = PHASE_ACTION;
+            m_phase = PHASE_ACTION;
         }
     }
 }
@@ -182,7 +182,7 @@ void Model::buyPhase(EVENT_CtoM *event){
         // 購入終了またはターン終了の場合
         if((STR_SEARCH(event->self.opeElement, PHASESWENDBUY))
         || (STR_SEARCH(event->self.opeElement, PHASESWENDTURN))){
-            _phase = PHASE_CLEANUP;
+            m_phase = PHASE_CLEANUP;
             update(event);
         }
         return;
@@ -193,21 +193,21 @@ void Model::buyPhase(EVENT_CtoM *event){
         if((event->self.TapOrDrag == DRAG)
         && (STR_SEARCH(event->self.dragMoveTo, PLAYAREA))){
             // 財宝カードならコイン追加
-            _coinCount += _playerCards.treasureMoveToPlayArea(event->self.opeIndex);
+            m_coinCount += m_playerCards.treasureMoveToPlayArea(event->self.opeIndex);
         }
         return;
     }
     // サプライ押下
     else if(STR_SEARCH(event->self.area, SUPPLY)){
         // コイン数が0以上ならカード購入成功
-        auto coin = _supplyCards.buy(event->self.opeElement, _coinCount);
+        auto coin = m_supplyCards.buy(event->self.opeElement, m_coinCount);
         if(coin >= 0){
-            _coinCount = coin;
-            _buyCount--;
-            _playerCards.buy(event->self.opeElement);
+            m_coinCount = coin;
+            m_buyCount--;
+            m_playerCards.buy(event->self.opeElement);
             // 購入数が無くなったら、クリーンアップフェーズへ
-            if(_buyCount <= 0){
-                _phase = PHASE_CLEANUP;
+            if(m_buyCount <= 0){
+                m_phase = PHASE_CLEANUP;
                 update(event);
             }
         }
@@ -216,10 +216,10 @@ void Model::buyPhase(EVENT_CtoM *event){
 
 // クリーンアップフェーズ
 void Model::cleanupPhase(){
-    _playerCards.cleanup();
-    _actionCount = 1;
-    _buyCount = 1;
-    _coinCount = 0;
+    m_playerCards.cleanup();
+    m_actionCount = 1;
+    m_buyCount = 1;
+    m_coinCount = 0;
 }
 
 // プレイヤーカードクラスへの通知データを作成
@@ -237,12 +237,12 @@ ActionDone Model::action(EVENT_CtoM *event){
     MODEL_PLAYERCARD_IO tmp = {};
     createActionIoData(event, &tmp);
     // カード毎の初回アクション
-    if(_phase == PHASE_ACTION){
-        ret = _playerCards.action(&tmp);
+    if(m_phase == PHASE_ACTION){
+        ret = m_playerCards.action(&tmp);
     }
     // アクションでユーザ操作がある場合はこっち
-    else if(_phase == PHASE_ACTIONWAIT){
-        ret = _playerCards.actionForWaitAction(&tmp);
+    else if(m_phase == PHASE_ACTIONWAIT){
+        ret = m_playerCards.actionForWaitAction(&tmp);
     }
     // アクションかアクション待ちフェーズではないとき
     else{
@@ -257,32 +257,32 @@ ActionDone Model::action(EVENT_CtoM *event){
 
         for(auto cardIndex : tmp.resultData.cardIndex){
             // プレイヤーの手札からカードを削除してカード名を取得
-            auto name = _playerCards.removeCard(&HAND, cardIndex);
+            auto name = m_playerCards.removeCard(&HAND, cardIndex);
             // 廃棄置き場に追加
-            _trashCards.addCard(name);
+            m_trashCards.addCard(name);
         }
     }
     // acbカウント反映
-    if((tmp.resultData.action < 0) && (_actionCount <= abs(tmp.resultData.action))){
-        _actionCount = 0;
+    if((tmp.resultData.action < 0) && (m_actionCount <= abs(tmp.resultData.action))){
+        m_actionCount = 0;
     }
     else{
-        _actionCount += tmp.resultData.action;
+        m_actionCount += tmp.resultData.action;
     }
-    if((tmp.resultData.buy < 0) && (_buyCount <= abs(tmp.resultData.buy))){
-        _buyCount = 0;
-    }
-    else{
-        _buyCount += tmp.resultData.buy;
-    }
-    if((tmp.resultData.coin < 0) && (_coinCount <= abs(tmp.resultData.coin))){
-        _coinCount = 0;
+    if((tmp.resultData.buy < 0) && (m_buyCount <= abs(tmp.resultData.buy))){
+        m_buyCount = 0;
     }
     else{
-        _coinCount += tmp.resultData.coin;
+        m_buyCount += tmp.resultData.buy;
     }
-    if((_actionCount > 0) && (ret == ACTIONDONE)){
-        _actionCount--;
+    if((tmp.resultData.coin < 0) && (m_coinCount <= abs(tmp.resultData.coin))){
+        m_coinCount = 0;
+    }
+    else{
+        m_coinCount += tmp.resultData.coin;
+    }
+    if((m_actionCount > 0) && (ret == ACTIONDONE)){
+        m_actionCount--;
     }
     return ret;
 }
@@ -291,18 +291,18 @@ void Model::draw(){
     // 通知データ生成
     EVENT_MtoV tmp = {};
 
-    _supplyCards.createData(&tmp.supplyCards);
-    if(_phase != PHASE_OTHERPLAYER){
-        _playerCards.createData(&tmp.playerCards);
+    m_supplyCards.createData(&tmp.supplyCards);
+    if(m_phase != PHASE_OTHERPLAYER){
+        m_playerCards.createData(&tmp.playerCards);
     }
     else{
-        _playerCards.createDataOtherPlayerCards(&tmp.playerCards);
+        m_playerCards.createDataOtherPlayerCards(&tmp.playerCards);
     }
-    _trashCards.createData(&tmp.trashCards);
-    tmp.abcCount.action = _actionCount;
-    tmp.abcCount.buy = _buyCount;
-    tmp.abcCount.coin = _coinCount;
-    tmp.phase = _phase;
+    m_trashCards.createData(&tmp.trashCards);
+    tmp.abcCount.action = m_actionCount;
+    tmp.abcCount.buy = m_buyCount;
+    tmp.abcCount.coin = m_coinCount;
+    tmp.phase = m_phase;
 
-    _observer->update(&tmp);
+    m_observer->update(&tmp);
 }

@@ -19,7 +19,7 @@ ActionDone Cellar::action(PLAYERCARD_CONCRETECARD_IO *p){
 
     // 初めてプレイエリアに出した時はアクション待ちを返す
     if(p->notifyData.actionPhase == PHASE_ACTION){
-        _select.clear();
+        m_select.clear();
         return ACTIONWAIT;
     }
 
@@ -27,13 +27,13 @@ ActionDone Cellar::action(PLAYERCARD_CONCRETECARD_IO *p){
     if(STR_SEARCH(p->notifyData.data.opeElement, OTHERSWCOMPLETE)){
         p->resultData.data.ope = GOTODISCARD;
         p->resultData.data.action = 1;
-        p->resultData.data.cardIndex = _select;
-        p->resultData.drawCard = _select.size();
+        p->resultData.data.cardIndex = m_select;
+        p->resultData.drawCard = m_select.size();
         return ACTIONDONE;
     }
     // キャンセルSWの場合
     else if(STR_SEARCH(p->notifyData.data.opeElement, OTHERSWCHANSEL)){
-        _select.clear();
+        m_select.clear();
         p->resultData.data.ope = SELECTHANDCARD;
         p->resultData.data.cardIndex.clear();
         return ACTIONWAIT;
@@ -42,13 +42,13 @@ ActionDone Cellar::action(PLAYERCARD_CONCRETECARD_IO *p){
     // 選択済みが4枚未満
     // 未選択のカード
     if((STR_SEARCH(p->notifyData.data.area, HAND))
-       && (_select.size() < 4)
-       && (_select.end() == find(_select.begin(), _select.end(), p->notifyData.data.opeIndex))){
+       && (m_select.size() < 4)
+       && (m_select.end() == find(m_select.begin(), m_select.end(), p->notifyData.data.opeIndex))){
         // 選択したカードを保持
-        _select.push_back(p->notifyData.data.opeIndex);
+        m_select.push_back(p->notifyData.data.opeIndex);
     }
     p->resultData.data.ope = SELECTHANDCARD;
-    p->resultData.data.cardIndex = _select;
+    p->resultData.data.cardIndex = m_select;
     return ACTIONWAIT;
 }
 

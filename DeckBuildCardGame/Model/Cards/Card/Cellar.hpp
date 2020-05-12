@@ -13,7 +13,7 @@ public:
     ActionDone action(PLAYERCARD_CONCRETECARD_IO *p);
     const std::string* who();
 private:
-    std::vector<CARDINDEX> _select;      // 選択状態のカード番号を保持
+    std::vector<CARDINDEX> m_select;      // 選択状態のカード番号を保持
 };
 
 #endif /* Cellar_hpp */

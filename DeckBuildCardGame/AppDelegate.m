@@ -3,7 +3,7 @@
 #import "P2P.h"
 
 @implementation AppDelegate{
-    P2P *_p2p;  // 暫定
+    P2P *g_p2p;  // 暫定
 }
 
 -(BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions{
@@ -20,8 +20,8 @@
     // key windowの表示
     [self.window makeKeyAndVisible];
     // P2Pセットアップ
-    _p2p = P2P.new;
-    [_p2p setup];
+    g_p2p = P2P.new;
+    [g_p2p setup];
 
     return YES;
 }
@@ -43,7 +43,7 @@
 -(void)applicationDidBecomeActive:(UIApplication*)application{
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     // アクティブ時に来るやつ
-    [_p2p drawBrowser:(ViewController*)self.window.rootViewController]; // 暫定
+    [g_p2p drawBrowser:(ViewController*)self.window.rootViewController]; // 暫定
 }
 
 -(void)applicationWillTerminate:(UIApplication*)application{

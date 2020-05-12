@@ -40,14 +40,14 @@ private:
     //////////////////////////////
     // プライベート変数
     //////////////////////////////
-    Observer_forView        *_observer;     // Viewへの通知用
-    SupplyCards             _supplyCards;   // サプライカードクラスインスタンス
-    PlayerCards             _playerCards;   // プレイヤーカードクラスインスタンス
-    TrashCards              _trashCards;    // 廃棄カードクラスインスタンス
-    Phase                   _phase;         // フェーズ（状態）
-    ACTIONNUM               _actionCount;   // 残りアクション数
-    BUYNUM                  _buyCount;      // 残り購入数
-    COINNUM                 _coinCount;     // コイン数
+    Observer_forView        *m_observer;    // Viewへの通知用
+    SupplyCards             m_supplyCards;  // サプライカードクラスインスタンス
+    PlayerCards             m_playerCards;  // プレイヤーカードクラスインスタンス
+    TrashCards              m_trashCards;   // 廃棄カードクラスインスタンス
+    Phase                   m_phase;        // フェーズ（状態）
+    ACTIONNUM               m_actionCount;  // 残りアクション数
+    BUYNUM                  m_buyCount;     // 残り購入数
+    COINNUM                 m_coinCount;    // コイン数
 };
 
 #endif /* Model_hpp */

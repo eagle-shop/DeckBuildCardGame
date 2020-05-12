@@ -16,7 +16,7 @@ public:
     void buyOtherPlayer(const std::string *name);
 
 private:
-    std::vector<SUPPLYCARDS> _supplyCards;
+    std::vector<SUPPLYCARDS> m_supplyCards;
 };
 
 #endif /* SupplyCards_hpp */

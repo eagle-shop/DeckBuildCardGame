@@ -13,7 +13,7 @@ public:
     ActionDone action(PLAYERCARD_CONCRETECARD_IO *p);
     const std::string* who();
 private:
-    std::vector<CARDINDEX> _treasure;      // 財宝カード番号を保持
+    std::vector<CARDINDEX> m_treasure;      // 財宝カード番号を保持
 };
 
 #endif /* Adventurer_hpp */

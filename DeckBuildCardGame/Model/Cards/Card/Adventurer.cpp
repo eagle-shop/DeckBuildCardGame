@@ -19,7 +19,7 @@ ActionDone Adventurer::action(PLAYERCARD_CONCRETECARD_IO *p){
     // 初回コール
     if(p->notifyData.actionPhase == PHASE_ACTION){
         p->resultData.data.ope = DECKOPEN;
-        _treasure.clear();
+        m_treasure.clear();
         return ACTIONCONTINUE;
     }
     // 2回目以降（山札1枚公開毎にコール）
@@ -28,17 +28,17 @@ ActionDone Adventurer::action(PLAYERCARD_CONCRETECARD_IO *p){
         CardInfo &cardInfo = CardInfo::getInstance();
         // 財宝カードの場合
         if(cardInfo._cardInfo[*(p->notifyData.data.opeElement)].effectInfo.kind == KIND_TREASURE){
-            _treasure.push_back(p->notifyData.data.opeIndex);
+            m_treasure.push_back(p->notifyData.data.opeIndex);
         }
         // 2枚未満なら継続
-        if(_treasure.size() < 2){
+        if(m_treasure.size() < 2){
             p->resultData.data.ope = DECKOPEN;
             return ACTIONCONTINUE;
         }
     }
     // 保持した財宝カードを手札に加える
     p->resultData.data.ope = GOTOHANDCARD;
-    p->resultData.data.cardIndex = _treasure;
+    p->resultData.data.cardIndex = m_treasure;
     return ACTIONDONE;
 }
 

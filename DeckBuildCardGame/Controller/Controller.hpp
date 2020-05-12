@@ -61,10 +61,10 @@ private:
     //////////////////////////////
     // プライベート変数
     //////////////////////////////
-    Observer_forModel           *_observer;         // Modelへのupdate通知用
-    id                          _scene;             // ルートノード（シーン）
-    DRAGINFO                    _dragInfo;          // ドラッグ情報管理用
-    std::vector<TOUCHFRAMEINFO> _touchFrameInfo;    // タッチ情報管理用
+    Observer_forModel           *m_observer;        // Modelへのupdate通知用
+    id                          m_scene;            // ルートノード（シーン）
+    DRAGINFO                    m_dragInfo;         // ドラッグ情報管理用
+    std::vector<TOUCHFRAMEINFO> m_touchFrameInfo;   // タッチ情報管理用
 };
 
 #endif /* Controller_hpp */

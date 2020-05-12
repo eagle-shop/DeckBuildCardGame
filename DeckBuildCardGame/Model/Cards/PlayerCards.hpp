@@ -39,12 +39,12 @@ private:
     //////////////////////////////
     // プライベート変数
     //////////////////////////////
-    std::vector<Card*>              _deckCards;             // 山札（テーブルに近いほうから0）
-    HAND_DATA                       _handCards;             // 手札
-    std::vector<Card*>              _discardCards;          // 捨札（テーブルに近いほうから0）
-    std::vector<Card*>              _playCards;             // プレイエリア
-    std::vector<Card*>              _tmpCards;              // 一時置き場
-    std::vector<const std::string*> _playCardsOtherPlayer;  // 相手のプレイエリア
+    std::vector<Card*>              m_deckCards;            // 山札（テーブルに近いほうから0）
+    HAND_DATA                       m_handCards;            // 手札
+    std::vector<Card*>              m_discardCards;         // 捨札（テーブルに近いほうから0）
+    std::vector<Card*>              m_playCards;            // プレイエリア
+    std::vector<Card*>              m_tmpCards;             // 一時置き場
+    std::vector<const std::string*> m_playCardsOtherPlayer; // 相手のプレイエリア
 
     //////////////////////////////
     // プライベートメソッド
