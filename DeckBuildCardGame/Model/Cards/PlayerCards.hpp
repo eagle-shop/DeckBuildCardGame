@@ -22,7 +22,6 @@ public:
     //////////////////////////////
     PlayerCards();
     ~PlayerCards();
-    void init();
     void createData(PLAYERCARDS *playerCards);
     void allPrint();
     void buy(const std::string *name);

@@ -22,7 +22,6 @@ public:
     ~View();
     void addObserver(Observer_forController *observer);
     void update(EVENT_MtoV *event);
-    void init();
 
 private:
     void drawABCcount(ABCCOUNT *abcCount);

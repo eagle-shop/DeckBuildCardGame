@@ -30,7 +30,6 @@ mutex g_mtx;
     m_view->addObserver(m_controller);
     m_controller->addObserver(m_model);
 
-    m_view->init();
     m_model->init();
 }
 

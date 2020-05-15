@@ -9,6 +9,17 @@ using namespace std;
 
 PlayerCards::PlayerCards(){
     cout << "create PlayerCards" << endl;
+    // 初期の銅貨7枚、屋敷3枚を生成して捨札に追加
+    for(auto i = 0; i < 7; i++){
+        m_discardCards.push_back(new Copper());
+    }
+    for(auto i = 0; i < 3; i++){
+        m_discardCards.push_back(new Estate());
+    }
+    // 捨札をシャッフルして山札に
+    shuffleDiscardToDeck();
+    // 山札から5枚を手札に
+    moveCards(&m_handCards.handCards, &m_deckCards, 5, BACK);
 }
 
 PlayerCards::~PlayerCards(){
@@ -29,21 +40,6 @@ PlayerCards::~PlayerCards(){
     for(auto& tmpCard : m_tmpCards){
         delete tmpCard;
     }
-}
-
-// 初期化（とりあえず屋敷スタート）
-void PlayerCards::init(){
-    // 初期の銅貨7枚、屋敷3枚を生成して捨札に追加
-    for(auto i = 0; i < 7; i++){
-        m_discardCards.push_back(new Copper());
-    }
-    for(auto i = 0; i < 3; i++){
-        m_discardCards.push_back(new Estate());
-    }
-    // 捨札をシャッフルして山札に
-    shuffleDiscardToDeck();
-    // 山札から5枚を手札に
-    moveCards(&m_handCards.handCards, &m_deckCards, 5, BACK);
 }
 
 void PlayerCards::createData(PLAYERCARDS *playerCards){

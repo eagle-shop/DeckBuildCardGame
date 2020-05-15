@@ -10,7 +10,6 @@ class SupplyCards{
 public:
     SupplyCards();
     ~SupplyCards();
-    void init();
     void createData(std::vector<SUPPLYCARDS> *supplyCards);
     COINRELATIVE buy(const std::string *name, COINNUM coin);
     void buyOtherPlayer(const std::string *name);

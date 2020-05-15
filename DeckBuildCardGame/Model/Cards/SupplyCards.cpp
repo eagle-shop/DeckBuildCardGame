@@ -8,14 +8,6 @@ using namespace std;
 
 SupplyCards::SupplyCards(){
     cout << "create SupplyCards" << endl;
-}
-
-SupplyCards::~SupplyCards(){
-    cout << "delete SupplyCards" << endl;
-}
-
-// サプライの初期化
-void SupplyCards::init(){
     m_supplyCards.push_back({&COPPER, 60 - (7 * 2)});   // 60枚から手札を引いた数が初期値
     m_supplyCards.push_back({&CHAPEL, 12});
     m_supplyCards.push_back({&CELLAR, 12});
@@ -33,6 +25,10 @@ void SupplyCards::init(){
     m_supplyCards.push_back({&DUCHY, 8});
     m_supplyCards.push_back({&PROVINCE, 8});
     m_supplyCards.push_back({&CURSE, 10});
+}
+
+SupplyCards::~SupplyCards(){
+    cout << "delete SupplyCards" << endl;
 }
 
 void SupplyCards::createData(vector<SUPPLYCARDS> *supplyCards){

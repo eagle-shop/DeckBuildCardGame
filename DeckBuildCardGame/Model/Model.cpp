@@ -8,7 +8,7 @@ using namespace std;
 TIME _time = 0;// 暫定
 
 Model::Model():
-#if 0  // リリース
+#if 1  // リリース
     m_phase(PHASE_OTHERPLAYER),
 #else   // デバッグ
     m_phase(PHASE_ACTION),
@@ -17,7 +17,7 @@ Model::Model():
     m_buyCount(1),
     m_coinCount(0){
     cout << "create Model" << endl;
-}
+    }
 
 Model::~Model(){
     cout << "delete Model" << endl;
@@ -94,7 +94,7 @@ Phase Model::update(EVENT_CtoM *event){
             case PHASE_CLEANUP:
                 cleanupPhase();
                 m_phase = PHASE_OTHERPLAYER;
-#if 1   // デバッグ
+#if 0   // デバッグ
                 m_phase = PHASE_ACTION;
 #endif
                 break;
@@ -110,10 +110,6 @@ Phase Model::update(EVENT_CtoM *event){
 }
 
 void Model::init(){
-    // サプライ生成
-    m_supplyCards.init();
-    // プレイヤーカード生成
-    m_playerCards.init();
     // 描画要求
     draw();
 }

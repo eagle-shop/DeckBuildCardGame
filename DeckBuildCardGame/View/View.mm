@@ -13,6 +13,14 @@ constexpr int CARDW = 6;
 
 View::View(SKScene *scene):m_scene(scene){
     cout << "create View" << endl;
+    // プレイエリアの描画
+    CGFloat w = m_scene.frame.size.width;
+    CGFloat h = m_scene.frame.size.height / CARDW;
+    SKSpriteNode *playArea = [SKSpriteNode spriteNodeWithColor:SKColor.grayColor size:CGSizeMake(w, h)];
+    playArea.anchorPoint = CGPointMake(0.0, 0.0);
+    playArea.position = CGPointMake(0, (m_scene.frame.size.height * 3.1) / 9);
+    playArea.name = [NSString stringWithFormat:@"%s", PLAYAREA.c_str()];
+    [m_scene addChild:playArea];
 }
 
 View::~View(){
@@ -38,18 +46,6 @@ void View::update(EVENT_MtoV *event){
     drawOtherSW(event->phase);
     // ポップアップの描画
     //    drawPopup(event->popup);
-}
-
-// 一度だけ描画するもの達
-void View::init(){
-    // プレイエリアの描画
-    CGFloat w = m_scene.frame.size.width;
-    CGFloat h = m_scene.frame.size.height / CARDW;
-    SKSpriteNode *playArea = [SKSpriteNode spriteNodeWithColor:SKColor.grayColor size:CGSizeMake(w, h)];
-    playArea.anchorPoint = CGPointMake(0.0, 0.0);
-    playArea.position = CGPointMake(0, (m_scene.frame.size.height * 3.1) / 9);
-    playArea.name = [NSString stringWithFormat:@"%s", PLAYAREA.c_str()];
-    [m_scene addChild:playArea];
 }
 
 // アクション数、購入数、コイン数の描画
