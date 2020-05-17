@@ -17,7 +17,7 @@ Model::Model():
     m_buyCount(1),
     m_coinCount(0){
     cout << "create Model" << endl;
-    }
+}
 
 Model::~Model(){
     cout << "delete Model" << endl;
