@@ -2,7 +2,11 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private var tableView: UITableView!
-    private let items = ["1", "2", "3"]
+    private var items = [
+        NSLocalizedString("play", comment: ""),
+        NSLocalizedString("deck editing", comment: ""),
+        NSLocalizedString("settings", comment: ""),
+    ]
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
@@ -16,12 +20,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch self.items[indexPath.row] {
-        case "1":
-            print("1")
-        case "2":
-            print("2")
-        case "3":
-            print("3")
+        case NSLocalizedString("play", comment: ""):
+            print(NSLocalizedString("play", comment: ""))
+        case NSLocalizedString("deck editing", comment: ""):
+            print(NSLocalizedString("deck editing", comment: ""))
+        case NSLocalizedString("settings", comment: ""):
+            print(NSLocalizedString("settings", comment: ""))
         default:
             break
         }
@@ -46,13 +50,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        self.view.addSubview(label)
         self.tableView.addSubview(label)
 
-        let languages = NSLocale.preferredLanguages
-        print(languages)
+//        let languages = NSLocale.preferredLanguages
+//        print(languages)
 
-        let locale = Locale.current.languageCode ?? "en"
-        print(locale)
-        let test = Locale.current.localizedString(forLanguageCode: locale)!
-        print(test)
+//        let locale = Locale.current.languageCode ?? "en"
+//        print(locale)
+
+//        print(NSLocalizedString("play", comment: ""))
     }
 
 /*    override func loadView() {

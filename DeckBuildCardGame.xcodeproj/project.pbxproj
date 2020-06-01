@@ -15,6 +15,7 @@
 		696AEBE8247FBB7800B2DFC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 696AEBE6247FBB7800B2DFC8 /* LaunchScreen.storyboard */; };
 		696AEBF3247FBB7800B2DFC8 /* DeckBuildCardGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBF2247FBB7800B2DFC8 /* DeckBuildCardGameTests.swift */; };
 		696AEBFE247FBB7800B2DFC8 /* DeckBuildCardGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBFD247FBB7800B2DFC8 /* DeckBuildCardGameUITests.swift */; };
+		696DDA9F2484E90300F71BFF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 696DDAA12484E90300F71BFF /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		690CD96F2483BEE000CC3A5D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		696AEBD5247FBB7400B2DFC8 /* DeckBuildCardGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeckBuildCardGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		696AEBD8247FBB7400B2DFC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		696AEBDA247FBB7400B2DFC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +50,8 @@
 		696AEBF9247FBB7800B2DFC8 /* DeckBuildCardGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeckBuildCardGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		696AEBFD247FBB7800B2DFC8 /* DeckBuildCardGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckBuildCardGameUITests.swift; sourceTree = "<group>"; };
 		696AEBFF247FBB7800B2DFC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		696DDAA02484E90300F71BFF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		696DDAA22484E91100F71BFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				696AEBF1247FBB7800B2DFC8 /* DeckBuildCardGameTests */,
 				696AEBFC247FBB7800B2DFC8 /* DeckBuildCardGameUITests */,
 				696AEBD6247FBB7400B2DFC8 /* Products */,
+				696DDA9C2484E82F00F71BFF /* Localizations */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +138,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		696DDA9C2484E82F00F71BFF /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				696DDAA12484E90300F71BFF /* Localizable.strings */,
+			);
+			path = Localizations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +255,7 @@
 			files = (
 				696AEBE8247FBB7800B2DFC8 /* LaunchScreen.storyboard in Resources */,
 				696AEBE5247FBB7800B2DFC8 /* Assets.xcassets in Resources */,
+				696DDA9F2484E90300F71BFF /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,9 +323,17 @@
 			isa = PBXVariantGroup;
 			children = (
 				696AEBE7247FBB7800B2DFC8 /* Base */,
-				690CD96F2483BEE000CC3A5D /* ja */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		696DDAA12484E90300F71BFF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				696DDAA02484E90300F71BFF /* ja */,
+				696DDAA22484E91100F71BFF /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
