@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6959BD5E2484FF0500DD495D /* DeckEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959BD5D2484FF0500DD495D /* DeckEditingViewController.swift */; };
+		6959BD60248515EB00DD495D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959BD5F248515EB00DD495D /* NavigationController.swift */; };
+		6959BD6224854FC900DD495D /* ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959BD6124854FC900DD495D /* ViewDelegate.swift */; };
 		696AEBD9247FBB7400B2DFC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBD8247FBB7400B2DFC8 /* AppDelegate.swift */; };
 		696AEBDB247FBB7400B2DFC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBDA247FBB7400B2DFC8 /* SceneDelegate.swift */; };
-		696AEBDD247FBB7400B2DFC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBDC247FBB7400B2DFC8 /* ViewController.swift */; };
+		696AEBDD247FBB7400B2DFC8 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBDC247FBB7400B2DFC8 /* RootViewController.swift */; };
 		696AEBE3247FBB7500B2DFC8 /* DeckBuildCardGame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBE1247FBB7500B2DFC8 /* DeckBuildCardGame.xcdatamodeld */; };
 		696AEBE5247FBB7800B2DFC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696AEBE4247FBB7800B2DFC8 /* Assets.xcassets */; };
 		696AEBE8247FBB7800B2DFC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 696AEBE6247FBB7800B2DFC8 /* LaunchScreen.storyboard */; };
@@ -36,10 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6959BD5D2484FF0500DD495D /* DeckEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckEditingViewController.swift; sourceTree = "<group>"; };
+		6959BD5F248515EB00DD495D /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		6959BD6124854FC900DD495D /* ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegate.swift; sourceTree = "<group>"; };
 		696AEBD5247FBB7400B2DFC8 /* DeckBuildCardGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeckBuildCardGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		696AEBD8247FBB7400B2DFC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		696AEBDA247FBB7400B2DFC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		696AEBDC247FBB7400B2DFC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		696AEBDC247FBB7400B2DFC8 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		696AEBE2247FBB7500B2DFC8 /* DeckBuildCardGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeckBuildCardGame.xcdatamodel; sourceTree = "<group>"; };
 		696AEBE4247FBB7800B2DFC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		696AEBE7247FBB7800B2DFC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,14 +85,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6959BD5C2484FCB100DD495D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6959BD5F248515EB00DD495D /* NavigationController.swift */,
+				696AEBDC247FBB7400B2DFC8 /* RootViewController.swift */,
+				6959BD5D2484FF0500DD495D /* DeckEditingViewController.swift */,
+				6959BD6124854FC900DD495D /* ViewDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		696AEBCC247FBB7400B2DFC8 = {
 			isa = PBXGroup;
 			children = (
 				696AEBD7247FBB7400B2DFC8 /* DeckBuildCardGame */,
 				696AEBF1247FBB7800B2DFC8 /* DeckBuildCardGameTests */,
 				696AEBFC247FBB7800B2DFC8 /* DeckBuildCardGameUITests */,
-				696AEBD6247FBB7400B2DFC8 /* Products */,
 				696DDA9C2484E82F00F71BFF /* Localizations */,
+				696AEBD6247FBB7400B2DFC8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,10 +120,9 @@
 		696AEBD7247FBB7400B2DFC8 /* DeckBuildCardGame */ = {
 			isa = PBXGroup;
 			children = (
-				696AEC0B247FC87E00B2DFC8 /* View */,
+				6959BD5C2484FCB100DD495D /* View */,
 				696AEBD8247FBB7400B2DFC8 /* AppDelegate.swift */,
 				696AEBDA247FBB7400B2DFC8 /* SceneDelegate.swift */,
-				696AEBDC247FBB7400B2DFC8 /* ViewController.swift */,
 				696AEBE4247FBB7800B2DFC8 /* Assets.xcassets */,
 				696AEBE6247FBB7800B2DFC8 /* LaunchScreen.storyboard */,
 				696AEBE9247FBB7800B2DFC8 /* Info.plist */,
@@ -131,13 +147,6 @@
 				696AEBFF247FBB7800B2DFC8 /* Info.plist */,
 			);
 			path = DeckBuildCardGameUITests;
-			sourceTree = "<group>";
-		};
-		696AEC0B247FC87E00B2DFC8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		696DDA9C2484E82F00F71BFF /* Localizations */ = {
@@ -280,7 +289,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				696AEBDD247FBB7400B2DFC8 /* ViewController.swift in Sources */,
+				696AEBDD247FBB7400B2DFC8 /* RootViewController.swift in Sources */,
+				6959BD60248515EB00DD495D /* NavigationController.swift in Sources */,
+				6959BD5E2484FF0500DD495D /* DeckEditingViewController.swift in Sources */,
+				6959BD6224854FC900DD495D /* ViewDelegate.swift in Sources */,
 				696AEBE3247FBB7500B2DFC8 /* DeckBuildCardGame.xcdatamodeld in Sources */,
 				696AEBD9247FBB7400B2DFC8 /* AppDelegate.swift in Sources */,
 				696AEBDB247FBB7400B2DFC8 /* SceneDelegate.swift in Sources */,

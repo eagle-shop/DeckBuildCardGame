@@ -1,11 +1,9 @@
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DeckEditingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private var tableView: UITableView!
-    private var items = [
-        NSLocalizedString("play", comment: ""),
-        NSLocalizedString("deck editing", comment: ""),
-        NSLocalizedString("settings", comment: ""),
+    private let items = [
+        NSLocalizedString("test", comment: ""),
     ]
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -20,12 +18,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch self.items[indexPath.row] {
-        case NSLocalizedString("play", comment: ""):
-            print(NSLocalizedString("play", comment: ""))
-        case NSLocalizedString("deck editing", comment: ""):
-            print(NSLocalizedString("deck editing", comment: ""))
-        case NSLocalizedString("settings", comment: ""):
-            print(NSLocalizedString("settings", comment: ""))
+        case NSLocalizedString("test", comment: ""):
+            dismiss(animated: true, completion: nil)
+
         default:
             break
         }
@@ -35,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        self.view.backgroundColor = UIColor.cyan
+        self.view.backgroundColor = UIColor.black
 
         self.tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -48,7 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         label.text = "Test"
         label.textColor = UIColor.black
 //        self.view.addSubview(label)
-        self.tableView.addSubview(label)
+//        self.tableView.addSubview(label)
 
 //        let languages = NSLocale.preferredLanguages
 //        print(languages)
