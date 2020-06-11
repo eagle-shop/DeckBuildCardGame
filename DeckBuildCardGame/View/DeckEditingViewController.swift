@@ -1,23 +1,24 @@
 import UIKit
 
 class DeckEditingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    private var tableView: UITableView!
-    private let items = [
+    private var m_delegate: ViewDelegate? = nil
+    private var m_tableView: UITableView!
+    private let m_items = [
         NSLocalizedString("test", comment: ""),
     ]
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return m_items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel!.text = self.items[indexPath.row]
+        let cell = m_tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel!.text = m_items[indexPath.row]
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch self.items[indexPath.row] {
+        switch m_items[indexPath.row] {
         case NSLocalizedString("test", comment: ""):
             dismiss(animated: true, completion: nil)
 
@@ -28,22 +29,23 @@ class DeckEditingViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.cyan
 
-        self.tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        self.tableView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.view.addSubview(self.tableView)
+        // Table Initialization
+        m_tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
+        m_tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        m_tableView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
+        m_tableView.delegate = self
+        m_tableView.dataSource = self
+        self.view.addSubview(m_tableView)
 
-        let label = UILabel(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 50)))
-        label.text = "Test"
-        label.textColor = UIColor.black
+//        let label = UILabel(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 50)))
+//        label.text = "Test"
+//        label.textColor = UIColor.black
+
 //        self.view.addSubview(label)
-//        self.tableView.addSubview(label)
+//        m_tableView.addSubview(label)
 
 //        let languages = NSLocale.preferredLanguages
 //        print(languages)
@@ -52,6 +54,9 @@ class DeckEditingViewController: UIViewController, UITableViewDataSource, UITabl
 //        print(locale)
 
 //        print(NSLocalizedString("play", comment: ""))
+
+        // NavigationBar Initialization
+        self.navigationItem.title = "test2"
     }
 
 /*    override func loadView() {

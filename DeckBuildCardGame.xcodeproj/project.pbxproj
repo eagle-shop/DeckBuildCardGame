@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		691AAD032486EE6D003B5A55 /* ExtensionFitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691AAD022486EE6D003B5A55 /* ExtensionFitCell.swift */; };
 		6959BD5E2484FF0500DD495D /* DeckEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959BD5D2484FF0500DD495D /* DeckEditingViewController.swift */; };
 		6959BD60248515EB00DD495D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959BD5F248515EB00DD495D /* NavigationController.swift */; };
 		6959BD6224854FC900DD495D /* ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6959BD6124854FC900DD495D /* ViewDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		691AAD022486EE6D003B5A55 /* ExtensionFitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionFitCell.swift; sourceTree = "<group>"; };
 		6959BD5D2484FF0500DD495D /* DeckEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckEditingViewController.swift; sourceTree = "<group>"; };
 		6959BD5F248515EB00DD495D /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		6959BD6124854FC900DD495D /* ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				696AEBDC247FBB7400B2DFC8 /* RootViewController.swift */,
 				6959BD5D2484FF0500DD495D /* DeckEditingViewController.swift */,
 				6959BD6124854FC900DD495D /* ViewDelegate.swift */,
+				691AAD022486EE6D003B5A55 /* ExtensionFitCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				696AEBE3247FBB7500B2DFC8 /* DeckBuildCardGame.xcdatamodeld in Sources */,
 				696AEBD9247FBB7400B2DFC8 /* AppDelegate.swift in Sources */,
 				696AEBDB247FBB7400B2DFC8 /* SceneDelegate.swift in Sources */,
+				691AAD032486EE6D003B5A55 /* ExtensionFitCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

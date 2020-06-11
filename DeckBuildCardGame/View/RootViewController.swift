@@ -25,30 +25,29 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = m_tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = m_items[indexPath.row]
+//        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         let imageView = cell.imageView
         switch m_items[indexPath.row] {
         case NSLocalizedString("play", comment: ""):
-            imageView?.image = UIImage(named: "Play")
+            imageView?.image = UIImage(named: "Play")?.fitCell(height: cell.frame.height)
 
         case NSLocalizedString("deck editing", comment: ""):
-            imageView?.image = UIImage(named: "Edit")
+            imageView?.image = UIImage(named: "Edit")?.fitCell(height: cell.frame.height)
 
         case NSLocalizedString("settings", comment: ""):
-            imageView?.image = UIImage(named: "Settings")
+            imageView?.image = UIImage(named: "Settings")?.fitCell(height: cell.frame.height)
 
         default:
             break
         }
 
-
         return cell
     }
 
 /*    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let imageView = cell.imageView
-        print(imageView?.frame)
+        print(m_tableView.rowHeight)
     }
 */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -77,16 +76,17 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         self.view.backgroundColor = UIColor.cyan
 
+        // Table Initialization
         m_tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         m_tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         m_tableView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         m_tableView.delegate = self
         m_tableView.dataSource = self
         m_tableView.remembersLastFocusedIndexPath = true
-
-        m_tableView.rowHeight = CGFloat(30)
-
         self.view.addSubview(m_tableView)
+
+        // NavigationBar Initialization
+        self.navigationItem.title = "test"
     }
 
     override func viewWillAppear(_ animated: Bool) {
