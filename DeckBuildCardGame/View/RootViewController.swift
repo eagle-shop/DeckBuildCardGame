@@ -13,7 +13,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.init(nibName: nil, bundle: nil)
         m_delegate = delegate
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -21,7 +21,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return m_items.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = m_tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = m_items[indexPath.row]
@@ -86,7 +86,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.view.addSubview(m_tableView)
 
         // NavigationBar Initialization
-        self.navigationItem.title = "test"
+        self.navigationItem.title = NSLocalizedString("top", comment: "")
     }
 
     override func viewWillAppear(_ animated: Bool) {

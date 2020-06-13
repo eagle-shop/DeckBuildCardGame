@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "post_add-black-48dp.pdf",
+      "filename" : "keyboard_arrow_left-black-48dp.pdf",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "post_add-white-48dp.pdf",
+      "filename" : "keyboard_arrow_left-white-48dp.pdf",
       "idiom" : "universal"
     }
   ],
