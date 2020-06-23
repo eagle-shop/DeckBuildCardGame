@@ -20,6 +20,9 @@
 		696AEBF3247FBB7800B2DFC8 /* DeckBuildCardGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBF2247FBB7800B2DFC8 /* DeckBuildCardGameTests.swift */; };
 		696AEBFE247FBB7800B2DFC8 /* DeckBuildCardGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AEBFD247FBB7800B2DFC8 /* DeckBuildCardGameUITests.swift */; };
 		696DDA9F2484E90300F71BFF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 696DDAA12484E90300F71BFF /* Localizable.strings */; };
+		69894EC3249B5CF900924919 /* Data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69894EC1249B5CF900924919 /* Data.cpp */; };
+		69C78F8D249786D000D9EBBE /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C78F8C249786D000D9EBBE /* Model.cpp */; };
+		69C78F9024978B6500D9EBBE /* ModelBridgeObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69C78F8F24978B6500D9EBBE /* ModelBridgeObjC.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,13 @@
 		696AEBFF247FBB7800B2DFC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		696DDAA02484E90300F71BFF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		696DDAA22484E91100F71BFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		69894EBF249A0FBF00924919 /* DeckBuildCardGame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeckBuildCardGame-Bridging-Header.h"; sourceTree = "<group>"; };
+		69894EC1249B5CF900924919 /* Data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Data.cpp; sourceTree = "<group>"; };
+		69894EC2249B5CF900924919 /* Data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Data.hpp; sourceTree = "<group>"; };
+		69C78F8C249786D000D9EBBE /* Model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		69C78F8E249787F300D9EBBE /* Model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
+		69C78F8F24978B6500D9EBBE /* ModelBridgeObjC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ModelBridgeObjC.mm; sourceTree = "<group>"; };
+		69C78F9124978BAA00D9EBBE /* ModelBridgeObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelBridgeObjC.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +133,7 @@
 		696AEBD7247FBB7400B2DFC8 /* DeckBuildCardGame */ = {
 			isa = PBXGroup;
 			children = (
+				69C78F8924976FE400D9EBBE /* Model */,
 				6959BD5C2484FCB100DD495D /* View */,
 				696AEBD8247FBB7400B2DFC8 /* AppDelegate.swift */,
 				696AEBDA247FBB7400B2DFC8 /* SceneDelegate.swift */,
@@ -158,6 +169,36 @@
 				696DDAA12484E90300F71BFF /* Localizable.strings */,
 			);
 			path = Localizations;
+			sourceTree = "<group>";
+		};
+		69894EC0249B5C8600924919 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				69894EC1249B5CF900924919 /* Data.cpp */,
+				69894EC2249B5CF900924919 /* Data.hpp */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		69C78F8924976FE400D9EBBE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				69894EC0249B5C8600924919 /* Data */,
+				69C78F8A2497773100D9EBBE /* Bridge */,
+				69C78F8C249786D000D9EBBE /* Model.cpp */,
+				69C78F8E249787F300D9EBBE /* Model.hpp */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		69C78F8A2497773100D9EBBE /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				69C78F8F24978B6500D9EBBE /* ModelBridgeObjC.mm */,
+				69C78F9124978BAA00D9EBBE /* ModelBridgeObjC.h */,
+				69894EBF249A0FBF00924919 /* DeckBuildCardGame-Bridging-Header.h */,
+			);
+			path = Bridge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +269,7 @@
 				TargetAttributes = {
 					696AEBD4247FBB7400B2DFC8 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 					};
 					696AEBED247FBB7800B2DFC8 = {
 						CreatedOnToolsVersion = 11.5;
@@ -292,12 +334,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69C78F9024978B6500D9EBBE /* ModelBridgeObjC.mm in Sources */,
 				696AEBDD247FBB7400B2DFC8 /* RootViewController.swift in Sources */,
 				6959BD60248515EB00DD495D /* NavigationController.swift in Sources */,
 				6959BD5E2484FF0500DD495D /* DeckEditingViewController.swift in Sources */,
+				69C78F8D249786D000D9EBBE /* Model.cpp in Sources */,
 				6959BD6224854FC900DD495D /* ViewDelegate.swift in Sources */,
 				696AEBE3247FBB7500B2DFC8 /* DeckBuildCardGame.xcdatamodeld in Sources */,
 				696AEBD9247FBB7400B2DFC8 /* AppDelegate.swift in Sources */,
+				69894EC3249B5CF900924919 /* Data.cpp in Sources */,
 				696AEBDB247FBB7400B2DFC8 /* SceneDelegate.swift in Sources */,
 				691AAD032486EE6D003B5A55 /* ExtensionFitCell.swift in Sources */,
 			);
@@ -475,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VH8T4TENKL;
 				INFOPLIST_FILE = DeckBuildCardGame/Info.plist;
@@ -484,6 +530,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = none.DeckBuildCardGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DeckBuildCardGame/Model/Bridge/DeckBuildCardGame-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -493,6 +541,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VH8T4TENKL;
 				INFOPLIST_FILE = DeckBuildCardGame/Info.plist;
@@ -502,6 +551,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = none.DeckBuildCardGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DeckBuildCardGame/Model/Bridge/DeckBuildCardGame-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

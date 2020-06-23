@@ -5,10 +5,12 @@ class DeckEditingViewController: UIViewController, UITableViewDataSource, UITabl
     private var m_items: [String] = []
     private var m_alert: UIAlertController!
     private var m_alertOkButton: UIAlertAction!
-    private var m_testArraySets: [String] = ["test1"]
+    private var m_model: Model!
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        m_items = m_testArraySets
+        let test: NSMutableArray = []
+        m_model.getSetsData(test)
+        m_items = test as! [String]
         return m_items.count
     }
 
@@ -33,6 +35,8 @@ class DeckEditingViewController: UIViewController, UITableViewDataSource, UITabl
 
         self.view.backgroundColor = UIColor.cyan
 
+        m_model = Model()
+
         // Table Initialization
         m_tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         m_tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -51,11 +55,10 @@ class DeckEditingViewController: UIViewController, UITableViewDataSource, UITabl
         m_alert.textFields?.first?.addTarget(self, action: #selector(changeText), for: UIControl.Event.allEvents)
 
         m_alertOkButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){ action in
-            let text = self.m_alert.textFields?.first?.text ?? ""
+//            let text = self.m_alert.textFields?.first?.text ?? ""
 
             // Creating a set (handled by the Model)
-            self.m_testArraySets += [text]
-            print(self.m_testArraySets)
+            self.m_model.createSet(self.m_alert.textFields?.first?.text ?? "")
             self.m_tableView.reloadData()
 
             self.m_alert.textFields?.first?.text = ""
